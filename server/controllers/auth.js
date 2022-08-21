@@ -11,7 +11,10 @@ export const register = async (req, res) => {
 
     if (isUsed) {
       return res.json({
-        message: "Username is already exist",
+        message: {
+          type: "error",
+          content: "Username is already exist",
+        },
       });
     }
 
@@ -22,16 +25,30 @@ export const register = async (req, res) => {
       username,
       password: hash,
     });
+    const token = jwt.sign(
+      {
+        id: newUser._id,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "30d" }
+    );
 
     await newUser.save();
 
     res.json({
       newUser,
-      message: "Register succesful",
+      token,
+      message: {
+        type: "success",
+        content: "Register succesful",
+      },
     });
   } catch (error) {
     res.json({
-      message: "Register error",
+      message: {
+        type: "error",
+        content: "Register error",
+      },
     });
   }
 };
@@ -43,14 +60,20 @@ export const login = async (req, res) => {
 
     if (!user) {
       return res.json({
-        message: "No user exist",
+        message: {
+          type: "error",
+          content: "No user exist",
+        },
       });
     }
 
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
     if (!isPasswordCorrect) {
       res.json({
-        message: "Wrong password",
+        message: {
+          type: "error",
+          content: "Wrong password",
+        },
       });
     }
 
@@ -65,11 +88,17 @@ export const login = async (req, res) => {
     res.json({
       token,
       user,
-      message: "You are logged in",
+      message: {
+        type: "success",
+        content: "You are logged in",
+      },
     });
   } catch (error) {
     res.json({
-      message: "Login error",
+      message: {
+        type: "error",
+        content: "Login error",
+      },
     });
   }
 };
