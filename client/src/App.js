@@ -12,7 +12,6 @@ import PostPage from "./pages/PostPage";
 import PostsPage from "./pages/PostPage";
 import AddPostPage from "./pages/AddPostPage";
 import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
 import EditPostPage from "./pages/EditPostPage";
 
 function App() {
@@ -31,7 +30,6 @@ function App() {
         <Route path="/post/:id/edit" element={<EditPostPage />} />
         <Route path="/new" element={<AddPostPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
       </Routes>
       <ToastContainer position="bottom-right" />
     </Layout>

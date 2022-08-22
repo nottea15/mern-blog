@@ -1,17 +1,19 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { isLogedIn, logout } from "../redux/features/auth/authSlice";
 import { toast } from "react-toastify";
 
 const Navbar = () => {
   const isAuth = useSelector(isLogedIn);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const logoutHandler = () => {
     dispatch(logout());
     window.localStorage.removeItem("token");
     toast.warn("You are logged out");
+    navigate("/");
   };
 
   const returnMenu = () => {
