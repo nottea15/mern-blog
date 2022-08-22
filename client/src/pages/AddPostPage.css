@@ -1,0 +1,10 @@
+.addPostInput {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 12px;
+}
+
+.openFile:hover {
+  background-color: #ccc;
+  color: black;
+}

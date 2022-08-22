@@ -59,7 +59,7 @@ export const login = async (req, res) => {
     const user = await User.findOne({ username });
 
     if (!user) {
-      res.json({
+      return res.json({
         message: {
           type: "error",
           content: "No user exist",
@@ -69,7 +69,7 @@ export const login = async (req, res) => {
 
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
     if (!isPasswordCorrect) {
-      res.json({
+      return res.json({
         message: {
           type: "error",
           content: "Wrong password",
