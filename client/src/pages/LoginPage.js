@@ -90,7 +90,7 @@
 // };
 
 // export default LoginPage;
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import AuthForm from "../components/AuthForm";
 import { loginUser, registerUser } from "../redux/features/auth/authSlice";
 import { useDispatch } from "react-redux";
@@ -140,7 +140,7 @@ const LoginPage = () => {
         <div className="column">
           <AuthForm onSubmit={onLoginSubmit} header="Login" status={status} />
         </div>
-        <div className="miidel aligned column">
+        <div className="middle aligned column">
           <AuthForm
             onSubmit={onRegisterSubmit}
             header="Register"

@@ -5,7 +5,9 @@ const Layout = ({ children }) => {
   return (
     <React.Fragment>
       <Navbar />
-      {children}
+      <div style={{ marginTop: "20px" }} className="ui container">
+        {children}
+      </div>
     </React.Fragment>
   );
 };
