@@ -30,7 +30,7 @@ const PostsPage = () => {
     );
   }
 
-  if (posts.length == 0) {
+  if (!posts.length) {
     return <h3 className="header">No Posts</h3>;
   }
 

@@ -3,6 +3,7 @@ import "./AddPostPage.css";
 import { useDispatch } from "react-redux";
 import { createPost } from "../redux/features/post/postSlice";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const AddPostPage = () => {
   const [title, setTitle] = useState("");
@@ -22,7 +23,12 @@ const AddPostPage = () => {
 
       dispatch(createPost(data));
 
-      navigate("/");
+      if (text && title) {
+        toast.success("Post created");
+        navigate("/");
+      } else {
+        toast.error("Enter title and text");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -32,6 +38,7 @@ const AddPostPage = () => {
     setImage("");
     setText("");
     setTitle("");
+    navigate("/");
   };
 
   return (
@@ -68,7 +75,7 @@ const AddPostPage = () => {
             </div>
             {image && (
               <img
-                class="ui rounded medium centered image"
+                className="ui rounded medium centered image"
                 src={URL.createObjectURL(image)}
                 alt="image"
               ></img>

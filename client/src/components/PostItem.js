@@ -6,8 +6,8 @@ const PostItem = ({ post }) => {
   const navigate = useNavigate();
   if (!post) {
     return (
-      <div class="ui active dimmer">
-        <div class="ui loader">Loading...</div>
+      <div className="ui active dimmer">
+        <div className="ui loader">Loading...</div>
       </div>
     );
   }

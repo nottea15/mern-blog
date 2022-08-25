@@ -7,14 +7,14 @@ import { getAllPosts } from "../redux/features/post/postSlice";
 
 const MainPage = () => {
   const dispatch = useDispatch();
-  const { posts, populatPosts } = useSelector((state) => state.post);
+  const { posts, popularPosts } = useSelector((state) => state.post);
 
   useEffect(() => {
     dispatch(getAllPosts());
-  }, []);
+  }, [dispatch]);
 
   if (!posts.length) {
-    return <h3 class="header">NO POSTS</h3>;
+    return <h3 className="header">NO POSTS</h3>;
   }
 
   return (
@@ -29,7 +29,7 @@ const MainPage = () => {
       <div className="four wide column">
         <h2 className="header">Popular:</h2>
         <div className="ui link cards">
-          {populatPosts?.map((post, index) => (
+          {popularPosts?.map((post, index) => (
             <PopularPosts key={index} post={post} />
           ))}
         </div>
