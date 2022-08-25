@@ -8,8 +8,8 @@ import { getUser } from "./redux/features/auth/authSlice";
 
 import Layout from "./components/Layout";
 import MainPage from "./pages/MainPage";
+import PostsPage from "./pages/PostsPage";
 import PostPage from "./pages/PostPage";
-import PostsPage from "./pages/PostPage";
 import AddPostPage from "./pages/AddPostPage";
 import LoginPage from "./pages/LoginPage";
 import EditPostPage from "./pages/EditPostPage";

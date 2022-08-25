@@ -1,12 +1,22 @@
 import React from "react";
 import Moment from "react-moment";
+import { useNavigate } from "react-router-dom";
 
 const PostItem = ({ post }) => {
+  const navigate = useNavigate();
   if (!post) {
-    return <h1 className="header">No Posts</h1>;
+    return (
+      <div class="ui active dimmer">
+        <div class="ui loader">Loading...</div>
+      </div>
+    );
   }
   return (
-    <div className="ui link item">
+    <div
+      style={{ marginBottom: "20px" }}
+      className="ui item"
+      onClick={() => navigate(`/post/${post._id}`)}
+    >
       <div className="content">
         {post.imgUrl && (
           <div className="ui fluid rounded image">
@@ -17,9 +27,9 @@ const PostItem = ({ post }) => {
             />
           </div>
         )}
-        <a style={{ margin: "20px 0" }} className="header">
+        <div style={{ margin: "20px 0" }} className="header">
           <h2>{post.title}</h2>
-        </a>
+        </div>
         <div className="description">
           <p>{post.text}</p>
         </div>

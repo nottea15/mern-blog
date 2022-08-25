@@ -11,16 +11,16 @@ const MainPage = () => {
 
   useEffect(() => {
     dispatch(getAllPosts());
-  }, [dispatch]);
+  }, []);
 
   if (!posts.length) {
-    return <h1 className="header">No Posts</h1>;
+    return <h3 class="header">NO POSTS</h3>;
   }
 
   return (
     <div className="ui two column grid">
       <div className="twelve wide column">
-        <div className="ui inverted list">
+        <div className="ui inverted divided list" style={{ cursor: "pointer" }}>
           {posts?.map((post, index) => (
             <PostItem key={index} post={post} />
           ))}

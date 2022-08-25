@@ -71,3 +71,41 @@ export const getAllPosts = async (req, res) => {
     });
   }
 };
+
+export const getById = async (req, res) => {
+  try {
+    const post = await Post.findByIdAndUpdate(req.params.id, {
+      $inc: { views: 1 },
+    });
+
+    res.json(post);
+  } catch (error) {
+    res.json({
+      message: {
+        type: "error",
+        content: "Something wrong",
+      },
+    });
+  }
+};
+
+//Get My Posts
+export const getMyPosts = async (req, res) => {
+  try {
+    const posts = await Post.find({ author: req.userId });
+    const list = await Promise.all(
+      posts.map((post) => {
+        return Post.findById(post._id);
+      })
+    );
+
+    res.json(list);
+  } catch (error) {
+    res.json({
+      message: {
+        type: "error",
+        content: "Something wrong here",
+      },
+    });
+  }
+};
